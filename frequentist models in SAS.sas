@@ -8,10 +8,11 @@ footnote 'Neupert & Hannig null effects paper';
 *dataset name = merged;
 *Level 2 id variable = id;
 
+ods graphics on;
 proc mixed data = merged noclprint covtest;
 title 'argument model';
 class id;
-model na = argument agegr argument*agegr/cl
+model na = argument agegr argument*agegr/cl residual
 solution ddfm=bw;
 random intercept argument/ subject = id;
 run;*interaction = no;
@@ -20,7 +21,7 @@ run;*interaction = no;
 proc mixed data = merged noclprint covtest;
 title 'potential argument model';
 class id;
-model na = potential_argument agegr potential_argument*agegr/cl
+model na = potential_argument agegr potential_argument*agegr/cl residual
 solution ddfm=bw;
 random intercept potential_argument/ subject = id;
 run;*interaction = no;
@@ -29,7 +30,7 @@ run;*interaction = no;
 proc mixed data = merged noclprint covtest;
 title 'work stressor model';
 class id;
-model na = work_stress agegr work_stress*agegr/cl
+model na = work_stress agegr work_stress*agegr/cl residual
 solution ddfm=bw;
 random intercept work_stress/ subject = id;
 run;*interaction = no;
@@ -38,7 +39,7 @@ run;*interaction = no;
 proc mixed data = merged noclprint covtest;
 title 'home stressor model';
 class id;
-model na = home agegr home*agegr/cl
+model na = home agegr home*agegr/cl residual
 solution ddfm=bw;
 random intercept home/ subject = id;
 run;*interaction = no;
@@ -47,7 +48,7 @@ run;*interaction = no;
 proc mixed data = merged noclprint covtest;
 title 'social network model';
 class id;
-model na = network agegr network*agegr/cl
+model na = network agegr network*agegr/cl residual
 solution ddfm=bw;
 random intercept network/ subject = id;
 run;*sig interaction;
@@ -75,10 +76,10 @@ run;*-.01 and not sig p = .868;
 proc mixed data = merged noclprint covtest;
 title 'health stressor model';
 class id;
-model na = health_stress agegr health_stress*agegr/cl
+model na = health_stress agegr health_stress*agegr/cl residual
 solution ddfm=bw;
 random intercept health_stress/ subject = id;
 run;*no interaction;
-
+ods graphics off;
 
 
