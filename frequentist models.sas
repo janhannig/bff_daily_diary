@@ -14,7 +14,7 @@ title 'argument model';
 class id;
 model na = argument agegr argument*agegr/cl residual
 solution ddfm=bw;
-random intercept argument/ subject = id;
+random intercept argument/ subject = id type = un;
 run;*interaction = no;
 
 
@@ -23,7 +23,7 @@ title 'potential argument model';
 class id;
 model na = potential_argument agegr potential_argument*agegr/cl residual
 solution ddfm=bw;
-random intercept potential_argument/ subject = id;
+random intercept potential_argument/ subject = id type = un;
 run;*interaction = no;
 
 
@@ -32,7 +32,7 @@ title 'work stressor model';
 class id;
 model na = work_stress agegr work_stress*agegr/cl residual
 solution ddfm=bw;
-random intercept work_stress/ subject = id;
+random intercept work_stress/ subject = id type = un;
 run;*interaction = no;
 
 
@@ -41,7 +41,7 @@ title 'home stressor model';
 class id;
 model na = home agegr home*agegr/cl residual
 solution ddfm=bw;
-random intercept home/ subject = id;
+random intercept home/ subject = id type = un;
 run;*interaction = no;
 
 
@@ -50,7 +50,7 @@ title 'social network model';
 class id;
 model na = network agegr network*agegr/cl residual
 solution ddfm=bw;
-random intercept network/ subject = id;
+random intercept network/ subject = id type = un;
 run;*sig interaction;
 
 *decomposing above;
@@ -61,8 +61,8 @@ where agegr = 0;
 class id;
 model na = network /cl
 solution ddfm=bw;
-random intercept network/ subject = id;
-run;*.36 and sig p = .009;
+random intercept network/ subject = id type = un;
+run;*.42 and sig p = .0016;
 
 proc mixed data = merged noclprint covtest;
 title 'social network model - older';
@@ -70,15 +70,15 @@ where agegr = 1;
 class id;
 model na = network /cl
 solution ddfm=bw;
-random intercept network/ subject = id;
-run;*-.01 and not sig p = .868;
+random intercept network/ subject = id type = un;
+run;*.02 and not sig p = .6661;
 
 proc mixed data = merged noclprint covtest;
 title 'health stressor model';
 class id;
 model na = health_stress agegr health_stress*agegr/cl residual
 solution ddfm=bw;
-random intercept health_stress/ subject = id;
+random intercept health_stress/ subject = id type = un;
 run;*no interaction;
 ods graphics off;
 
